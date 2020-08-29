@@ -25,7 +25,7 @@ function writePassword() {
     var includeUpper = confirm("Do you want to include uppercase?");
     var includeLower = confirm("Do you want to include lowercase?");
     var includeNumbers = confirm("Do you want to include numbers?");
-    var includeSymbols = confirm("Do you want to include Symbols?");
+    var includeSymbols = confirm("Do you want to include symbols?");
        console.log(includeUpper);
   if (includeLower ===false && includeSymbols===false && includeNumbers===false && includeUpper===false) {
     alert("This is invalid entry.")
