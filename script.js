@@ -12,7 +12,7 @@ function writePassword() {
 //generate Password function 
 //length for password (8<=128)
   function generatePassword () {
-      var numberOfCart = prompt ("Please provide the length of your password.");
+      var numberOfCart = prompt ("Please provide the length of your password at least 8 characters.");
       if (numberOfCart >= 8 && numberOfCart <=128) {
           console.log("rabbit");
            }
