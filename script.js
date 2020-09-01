@@ -7,172 +7,77 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
-//generate Password function 
+//generate Password function
 //length for password (8<=128)
-  function generatePassword () {
-      var numberOfCart = prompt ("Please provide the length of your password at least 8 characters.");
-      if (numberOfCart >= 8 && numberOfCart <=128) {
-          console.log("rabbit");
-           }
-      else {
-          alert ("Please provide a valid entry!");
-          return ("Please try again.");
-       }
-    
-//userEntry 
-    var includeUpper = confirm("Do you want to include uppercase?");
-    var includeLower = confirm("Do you want to include lowercase?");
-    var includeNumbers = confirm("Do you want to include numbers?");
-    var includeSymbols = confirm("Do you want to include symbols?");
-       console.log(includeUpper);
-  if (includeLower ===false && includeSymbols===false && includeNumbers===false && includeUpper===false) {
-    alert("This is invalid entry.")
-    return ("Please select each category!");
-  }
-  else {
-    console.log("rabbit2");
+function generatePassword() {
+  var numberOfCart = parseInt(
+    prompt("Please provide the length of your password at least 8 characters.")
+  );
+  if (numberOfCart >= 8 && numberOfCart <= 128) {
+    //console.log("rabbit");
+  } else {
+    alert("Please provide a valid entry!");
+    return "Please try again.";
   }
 
-//start supperArray: lowerCase, upperCase, symbols, numbers
-  passwordArray= [];
-  superArray = [];
-  lowerCase = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-  ];
-  upperCase = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "Y",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-  ];
-  symbols = [
-    "!",
-    "#",
-    "$",
-    "%",
-    "^",
-    "&",
-    "*",
-    "(",
-    ")",
-    "+",
-    ",",
-    "-",
-    ".",
-    "/",
-    ";",
-    ":",
-    "<",
-    ">",
-    "=",
-    "?",
-    "@",
-    "[",
-    "]",
-    "_",
-    "{",
-    "}",
-    "|",
-    "~",
-    '"',
-    "'"];
-    numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-// finish superArray line
+  //create supper strings: lower, upper, numbers, symbols
 
-//for loop and validate 
-if (includeLower === true){
-  for (var i = 0; i <lowerCase.length; i++) {
-    superArray.push(lowerCase[i]);
-    console.log(superArray)
+  var superString = "";
+  var upperString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var lowerString = "abcdefghijklmnopqrstuvwxyz";
+  var numbersString = "0123456789";
+  var symbolsString = "!“#$%&()*+,-./:;<=>?@][^_`{|}~";
+  var password = "";
+
+  //create user entry and validate
+
+  if (confirm("Do you want uppercase?")) {
+    superString += upperString;
+       var random = Math.floor(Math.random() * superString.length);
+       password += upperString.charAt(random);
   }
-} else console.log("Lowercase not included!")
+  console.log("upper Included");
 
-if (includeUpper === true){
-  for (var i = 0; i <upperCase.length; i++) {
-    superArray.push(upperCase[i]);
-    console.log(superArray)
+  if (confirm("Do you want lowercase?")) {
+    superString += lowerString;
+       var random = Math.floor(Math.random() * superString.length);
+       password += lowerString.charAt(random);
   }
-} else console.log("Uppercase not included!")
+  console.log("Lowercase Included");
 
-if (includeSymbols === true){
-  for (var i = 0; i <symbols.length; i++) {
-    superArray.push(symbols[i]);
-    console.log(superArray)
+  if (confirm("Do you want numbers?")) {
+    superString += numbersString;
+       var random = Math.floor(Math.random() * superString.length);
+       password += numbersString.charAt(random);
   }
-} else console.log("Symbols not included!")
+  console.log("Numbers Included");
 
-if (includeNumbers === true){
-  for (var i = 0; i <numbers.length; i++) {
-    superArray.push(numbers[i]);
-    console.log(superArray)
+  if (confirm("Do you want symbols?")) {
+    superString += symbolsString;
+       var random = Math.floor(Math.random() * symbolsString.length);
+       password += symbolsString.charAt(random);
   }
-} else console.log("Numbers not included!")
+  console.log("Symbols Included");
+  //adjust for loop numbers of chart so password is shorter
 
+  if (superString.length === 0) {
+    alert("You did not select any category");
+    return "Please try again!";
+  }
+  
+  var userSelect = "";
+  for (var i = 0; i < length; i++) {
+    //picks a character within charSet at index of random number
+    userSelect += password.charAt(Math.floor(Math.random() * password.length));
+  }
 
-
-for (var i =0; i < numberOfCart; i++){
-  var randomIndex =Math.floor(Math.random() * superArray.length);
-  passwordArray.push(superArray[randomIndex]);
-}
-console.log(passwordArray);
-
-var secret = passwordArray.join ("");
-console.log(secret);
-return secret;
-
+  for (var i = 0; i < numberOfCart; i++) {
+    var random = Math.floor(Math.random() * superString.length);
+    password += superString.charAt(random);
+  }
+  return password;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
